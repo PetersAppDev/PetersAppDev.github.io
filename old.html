@@ -1,0 +1,191 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Peter's App</title>
+      
+      <style>
+          html, body {
+            height: 100%;
+            margin: 0;
+            overflow:hidden;
+            font-family: courier;
+            font-weight: bold;
+            font-size: 27px;
+            color: black;
+          }
+          #PeterPostContainer{
+              width:585px;
+          }
+          .PeterPostInner{
+              background-color: white;
+              width:487px;
+              height:284px;
+              padding: 5px 5px 5px 5px;
+              border-width: 3px;
+              border-radius: 3px;
+              border-color:black;
+              border-style:solid;
+          }
+          .PeterPostOuter{
+              background-color: white;
+              width:503px;
+              height:300px;
+              padding: 3px 3px 3px 3px;
+              border: 8px solid black;
+              border-radius:12px;
+              box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+              z-index: -1;
+              margin-left: 15px;
+              display:inline-block;
+          }
+          .CircleButton2{
+              width:75px;
+              height:75px;
+              border-radius:50%;
+              border:8px solid white;
+              box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+              background-size:cover !important;
+              display: block;
+              margin-top: 20px;
+          }
+          .divider{
+              width:487px;
+              margin-bottom:5px !important;
+              margin: -5px;
+              background-color:black;
+              color:white;
+              border: 5px solid black;
+              border-top-width: 2px;
+          }
+          .PeterPost{
+              margin:0 auto;
+              width:635px;
+              height:435px;
+              position:absolute;
+              top:50%;
+              margin-top: -217.5px;
+              left: 50%;
+              margin-left:-317.5px;
+          }
+          #content{
+              position:fixed;
+              width:100%;
+              min-height: 100%;
+              max-height: 100%;
+          }
+          #head{
+              padding-top:11px;
+              padding-bottom:8px;
+              background-color:white;
+              height:44px;
+              display:block;
+              text-align:center;
+          }
+          #top{
+              min-height: 33%;
+              background: rgb(255,255,255);
+              background: linear-gradient(180deg, rgba(215,215,215,1) 0%, rgba(245,245,245,1) 10%, rgba(245,245,245,1) 90%, rgba(215,215,215,1) 100%);
+              position: relative;
+          }
+          #bottom{
+              background-color:white;
+              min-height: calc(67% - 60px);
+              position: relative;
+          }
+          #ad{
+              background-image: url(ad.jpg);
+              background-size: cover;
+              top: 50%;
+              left:50%;
+              margin-top:-140px;
+              margin-left:-168px;
+              width:336px;
+              height:280px;
+              position:absolute;
+          }
+          .tinyspace{
+              width:3px;
+              height:1px;
+              display:inline-block;
+          }
+          #Bucks{
+              background-color:black;
+              color:white;
+              display:inline-block;
+              padding-top:1px;
+              padding-right:4px;
+              padding-left:3px;
+              border: 3px solid black;
+              border-radius: 12px;
+          }
+          .Arrow{
+              margin-top:128px;
+              width:40px;
+              height:80px;
+              box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+              background-size:contain !important;
+              border-radius: 12px;
+              box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
+          }
+      </style>
+      
+</head>
+<body>
+    
+    <div id="head"><div id="Bucks">$1500P</div></div>
+    <div id="top"> <div id="ad"></div> </div>
+    <div id="bottom">
+    <div class="PeterPost">
+        <div class="Arrow" style="background: url(left.png), black; float:left;"></div>
+      <div class="PeterPostOuter">
+        <div class="PeterPostInner">
+          <div class="divider">karatebuilderboy</div>
+          a a a a a a a a a a a aamy name is isaac [REDACTED]
+          and i love to eat tasty foods such as beans and
+          salad and the american classic, ROBASCO HOTa SUACE!!
+          pleaase send my mail to me with my email address. thanks guys!!!! aaaaaaaaaaaaaa
+        </div>
+      </div>
+        <div class="Arrow" style="background: url(right.png), black; float:right;"></div>
+      
+      <span class="CircleButton2" style="float:left; margin-left: 100px; background: url(grbg.png), black;"></span>
+      <span class="CircleButton2" style="float:left; margin-left: 20px; background: url(invst.png), black;"></span>
+      <span class="CircleButton2" style="float:left; margin-left: 21px; background: url(usr.png), black;"></span>
+      <span class="CircleButton2" style="float:left; margin-left: 20px; background: url(up.png), black;"></span>
+    </div>
+    
+    </div>
+    
+    <script>
+        
+        var main = "white";
+        var highlight = "black";
+        
+        function recolor(newcolor, newcolor2){
+            document.body.style.color=newcolor;
+            document.getElementsByClassName("divider")[0].style.backgroundColor=newcolor;
+            document.getElementsByClassName("divider")[0].style.borderColor=newcolor;
+            document.getElementsByClassName("PeterPostOuter")[0].style.borderColor=newcolor;
+            document.getElementsByClassName("PeterPostInner")[0].style.borderColor=newcolor;
+            document.getElementsByClassName("PeterPostInner")[0].style.backgroundColor=newcolor2;
+            document.getElementsByClassName("PeterPostOuter")[0].style.backgroundColor=newcolor2;
+             document.getElementsByClassName("divider")[0].style.color=newcolor2;
+            highlight=newcolor;
+        }
+        function buttonrender(following){
+            if(following){
+                document.getElementsByClassName("CircleButton2")[2].style.backgroundImage = "url('usr2.png')";
+                document.getElementsByClassName("CircleButton2")[2].style.borderColor = highlight;
+                document.getElementsByClassName("CircleButton2")[2].style.boxShadow = "none";
+            } else {
+                document.getElementsByClassName("CircleButton2")[2].style.backgroundImage = "url('usr.png')";
+                document.getElementsByClassName("CircleButton2")[2].style.borderColor = main;
+                document.getElementsByClassName("CircleButton2")[2].style.boxShadow = "0px 0px 20px 0px rgba(0, 0, 0, 0.5)";
+            }
+        }
+        
+    </script>
+
+</body>
+</html>
