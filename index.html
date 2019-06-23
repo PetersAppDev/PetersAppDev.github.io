@@ -9,6 +9,7 @@
         @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:700&display=swap&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext');
           
           html, body {
+            background-color:#5e5e5e;
             line-height: 30px;
             height: 100%;
             margin: 0;
@@ -18,7 +19,8 @@
             color: black;
           }
           #PetersApp{
-            height: 100%;
+            width:670px;
+            height: 920px;
             margin: 0;
             overflow:hidden;
           }
@@ -175,19 +177,19 @@
         var highlight = "black";
         
         function resizeapp(){
-            if(window.innerHeight <= 900){
-                document.getElementById("PetersApp").style.height = "900px";
-                var scale = (window.innerHeight / document.getElementById("PetersApp").clientHeight)
-                console.log(scale);
-                document.getElementById("PetersApp").style.transform = "scale(" + scale + ")";
-                document.getElementById("PetersApp").style.marginTop = ((window.innerHeight - 900)/2) + "px";
-                document.getElementById("PetersApp").style.width = window.innerWidth*(1/scale) + "px";
-                document.getElementById("PetersApp").style.marginLeft = ((window.innerWidth - document.getElementById("PetersApp").clientWidth)/2) + "px";
+            var scale = 1;
+            if(window.innerWidth / window.innerHeight < 670/920){
+                //HORIZONTAL
+                scale = (window.innerWidth / document.getElementById("PetersApp").clientWidth)
+                
             } else {
-                document.getElementById("PetersApp").style.height = "100%";
-                document.getElementById("PetersApp").style.transform = "scale(1)";
-                document.getElementById("PetersApp").style.marginTop = "0px";
+                //VERTICAL
+                scale = (window.innerHeight / document.getElementById("PetersApp").clientHeight)
             }
+            document.getElementById("PetersApp").style.transform = "scale(" + scale + ")";
+            document.getElementById("PetersApp").style.marginTop = ((window.innerHeight - 920)/2) + "px";
+            document.getElementById("PetersApp").style.width = window.innerWidth*(1/scale) + "px";
+            document.getElementById("PetersApp").style.marginLeft = ((window.innerWidth - document.getElementById("PetersApp").clientWidth)/2) + "px";
         }
         
         function recolor(newcolor, newcolor2){
