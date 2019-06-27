@@ -49,8 +49,13 @@
               z-index: -1;
               margin-left: 26px;
               display:inline-block;
+              
+              
+              transition: transform 0.75s, opacity 0.75s; 
           }
           .CircleButton2{
+              position:relative;
+              z-index: 1;
               margin-top:-12px;
               width:75px;
               height:75px;
@@ -136,6 +141,8 @@
               font-size: 45px;
           }
           .Arrow{
+              position:relative;
+              z-index: 1;
               margin-top:136px;
               width:40px;
               height:80px;
@@ -144,6 +151,8 @@
               box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.65);
           }
         .Arrow2{
+            position:relative;
+            z-index: 1;
             margin-top:-5px;
             margin-bottom:39px;
               height:40px;
@@ -153,6 +162,7 @@
               box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.65);
         }
         #Postzone{
+            z-index: -1;
             margin-left:0px;
             margin-top: -50px;
             overflow:hidden;
@@ -220,9 +230,6 @@
             window.addEventListener('resize', resizeapp);
         }
         
-        var main = "white";
-        var highlight = "black";
-        
         function resizeapp(){
             var scale = 1;
             if(window.innerWidth / window.innerHeight < 606/920){
@@ -239,6 +246,19 @@
             document.getElementById("PetersApp").style.marginLeft = ((window.innerWidth - document.getElementById("PetersApp").clientWidth)/2) + "px";
         }
         
+        
+        
+        
+        /* All functions of graphical significance below here.
+        
+                recolor(newcolor, newcolor 2): Usses newcolor in place of black and newcolor2 in place of white for post
+                buttonrender(following, liked): Uses two bools to render buttons if user has/hasn't followed user/liked post, renders garbage or undelete icon based on deleted
+           */
+        
+        
+        
+        
+        
         function recolor(newcolor, newcolor2){
             document.body.style.color=newcolor;
             document.getElementsByClassName("divider")[0].style.backgroundColor=newcolor;
@@ -247,23 +267,71 @@
             document.getElementsByClassName("PeterPostInner")[0].style.borderColor=newcolor;
             document.getElementsByClassName("PeterPostInner")[0].style.backgroundColor=newcolor2;
             document.getElementsByClassName("PeterPostOuter")[0].style.backgroundColor=newcolor2;
-             document.getElementsByClassName("divider")[0].style.color=newcolor2;
-            highlight=newcolor;
+            document.getElementsByClassName("divider")[0].style.color=newcolor2;
         }
-        function buttonrender(following){
+        function buttonrender(following, liked, deleted){
             if(following){
                 document.getElementsByClassName("CircleButton2")[2].style.backgroundImage = "url('usr2.png')";
-                document.getElementsByClassName("CircleButton2")[2].style.borderColor = highlight;
+                document.getElementsByClassName("CircleButton2")[2].style.borderColor = "#222222";
+                document.getElementsByClassName("CircleButton2")[2].style.backgroundColor = "#222222";
                 document.getElementsByClassName("CircleButton2")[2].style.boxShadow = "none";
             } else {
                 document.getElementsByClassName("CircleButton2")[2].style.backgroundImage = "url('usr.png')";
-                document.getElementsByClassName("CircleButton2")[2].style.borderColor = main;
+                document.getElementsByClassName("CircleButton2")[2].style.borderColor = "#878787";
+                document.getElementsByClassName("CircleButton2")[2].style.backgroundColor = "#cfcfcf";
                 document.getElementsByClassName("CircleButton2")[2].style.boxShadow = "0px 0px 20px 0px rgba(0, 0, 0, 0.5)";
             }
+            if(liked){
+                document.getElementsByClassName("CircleButton2")[3].style.backgroundImage = "url('up2.png')";
+                document.getElementsByClassName("CircleButton2")[3].style.borderColor = "#222222";
+                document.getElementsByClassName("CircleButton2")[3].style.backgroundColor = "#222222";
+                document.getElementsByClassName("CircleButton2")[3].style.boxShadow = "none";
+            } else {
+                document.getElementsByClassName("CircleButton2")[3].style.backgroundImage = "url('up.png')";
+                document.getElementsByClassName("CircleButton2")[3].style.borderColor = "#878787";
+                document.getElementsByClassName("CircleButton2")[3].style.backgroundColor = "#cfcfcf";
+                document.getElementsByClassName("CircleButton2")[3].style.boxShadow = "0px 0px 20px 0px rgba(0, 0, 0, 0.5)";
+            }
+            if(deleted){
+                document.getElementsByClassName("CircleButton2")[0].style.backgroundImage = "url('undel.png')";
+            } else {
+                document.getElementsByClassName("CircleButton2")[0].style.backgroundImage = "url('grbg.png')";
+            }
         }
+        
+        
+        
+        
+        
         function fadeup(usr, text){
             document.getElementById("Postzone").innerHTML += '<div class="PeterPostOuter"><div class="PeterPostInner"><div class="divider">@<u>' + usr + '</u></div>' + text + '</div></div>';
-        
+            setTimeout(function(){
+                document.getElementsByClassName("PeterPostOuter")[0].style.transform = "translateY(-371px)";
+                document.getElementsByClassName("PeterPostOuter")[1].style.transform = "translateY(-371px)";
+                document.getElementsByClassName("PeterPostOuter")[1].style.opacity = "100";
+                document.getElementsByClassName("PeterPostOuter")[0].style.opacity = "0";
+            }, 100);
+            setTimeout(function(){
+                document.getElementsByClassName("PeterPostOuter")[0].remove();
+                document.getElementsByClassName("PeterPostOuter")[0].remove();
+                document.getElementById("Postzone").innerHTML += '<div class="PeterPostOuter"><div class="PeterPostInner"><div class="divider">@<u>' + usr + '</u></div>' + text + '</div></div>';
+            }, 760);
+        }
+        function fadedown(usr, text){
+            document.getElementById("Postzone").innerHTML = '<div class="PeterPostOuter"><div class="PeterPostInner"><div class="divider">@<u>' + usr + '</u></div>' + text + '</div></div>' + document.getElementById("Postzone").innerHTML;
+            document.getElementsByClassName("PeterPostOuter")[0].style.transform = "translateY(-371px)";
+            document.getElementsByClassName("PeterPostOuter")[1].style.transform = "translateY(-371px)";
+            setTimeout(function(){
+                document.getElementsByClassName("PeterPostOuter")[0].style.transform = "translateY(0px)";
+                document.getElementsByClassName("PeterPostOuter")[1].style.transform = "translateY(0px)";
+                document.getElementsByClassName("PeterPostOuter")[0].style.opacity = "100";
+                document.getElementsByClassName("PeterPostOuter")[1].style.opacity = "0";
+            }, 100);
+            setTimeout(function(){
+                document.getElementsByClassName("PeterPostOuter")[0].remove();
+                document.getElementsByClassName("PeterPostOuter")[0].remove();
+                document.getElementById("Postzone").innerHTML += '<div class="PeterPostOuter"><div class="PeterPostInner"><div class="divider">@<u>' + usr + '</u></div>' + text + '</div></div>';
+            }, 760);
         }
     </script>
 
